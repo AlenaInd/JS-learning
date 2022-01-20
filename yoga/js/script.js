@@ -132,6 +132,25 @@ window.addEventListener('DOMContentLoaded', function() {
 
         let request = new XMLHttpRequest();
         request.open('POST', 'server.php');
+
+        //promise, но чтобы работало надо с верхов функцию переписывать, см. промисификация на https://learn.javascript.ru/promise
+
+        request.onload = function() {
+            if (this.status == 200) {
+              resolve(this.response);
+            } else {
+              var error = new Error(this.statusText);
+              error.code = this.status;
+              reject(error);
+            }
+          };
+      
+          request.onerror = function() {
+            reject(new Error("Network Error"));
+          };
+
+        //end promise
+
         request.setRequestHeader ('Content-Type', 'application/json; charset=utf-8');
 
         let formData = new FormData(form);
