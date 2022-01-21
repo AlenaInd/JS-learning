@@ -253,7 +253,8 @@ window.addEventListener('DOMContentLoaded', function() {
         personsSum = +this.value;
         total = (daysSum + personsSum)*4000;
 
-        if(restDays.value == '') {
+        //if(restDays.value == '') {
+        if(restDays.value == '' || persons.value == '') {
             totalValue.innerHTML = 0;
         } else {
             totalValue.innerHTML = total;
@@ -264,19 +265,20 @@ window.addEventListener('DOMContentLoaded', function() {
         daysSum = +this.value;
         total = (daysSum + personsSum)*4000;
 
-        if(persons.value == '') {
+        //if(persons.value == '') {
+        if(restDays.value == '' || persons.value == '') {
             totalValue.innerHTML = 0;
         } else {
             totalValue.innerHTML = total;
         }
     });
 
-    // place.addEventListener('change', function() {
-    //     if (restDays.value == '' || persons.value == '') {
-    //         totalValue.innerHTML = 0;
-    //     } else {
-    //         let a = total; //нужно чтобы тотал не увеличивался при изменении места
-    //         totalValue.innerHTML = a * this.options[this.selectedIndex].value;
-    //     }
-    // });
+    place.addEventListener('change', function() {
+        if (restDays.value == '' || persons.value == '') {
+            totalValue.innerHTML = 0;
+        } else {
+            let a = total; //нужно чтобы тотал не увеличивался при изменении места
+            totalValue.innerHTML = a * this.options[this.selectedIndex].value;
+        }
+    });
 });
